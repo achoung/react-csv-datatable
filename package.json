@@ -1,10 +1,13 @@
 {
   "name": "react-csv-datatable",
   "version": "0.1.0",
+  "homepage": "http://achoung.github.io/react-csv-datatable",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.4.1",
+    "@material-ui/icons": "^2.0.0",
     "lodash": "^4.17.10",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-csv-reader": "^0.3.2",
     "react-dom": "^16.4.1",
@@ -14,6 +17,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "gh-pages": "^1.2.0"
   }
 }

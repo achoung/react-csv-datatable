@@ -1,10 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
 import uniqueId from 'lodash/uniqueId';
 import isNil from 'lodash/isNil';
 import Datatable from './components/datatable';
 import CsvImporter from './components/import-csv';
+import AppBar from './AppBar';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blue,
+        type: 'dark',
+    },
+});
+
+const styles = {
+    container: {
+
+    },
+    component: {
+
+    },
+};
 
 class App extends Component {
+    static propTypes = {
+        classes: PropTypes.object.isRequired,
+    };
+
     constructor() {
         super();
         this.state = {
@@ -23,7 +48,7 @@ class App extends Component {
                 // do not include the column names as data as they will be used as object keys
                 if (rowIndex > 0) {
                     const fmtRowObject = {};
-                    
+
                     rowValue.forEach((columnValue, columnIndex) => {
                         const headerName = tableColumns[columnIndex];
                         fmtRowObject[headerName] = columnValue;
@@ -47,29 +72,26 @@ class App extends Component {
 
     render() {
         const { tableColumns, tableRows } = this.state;
+        const { classes } = this.props;
 
         let viewComponent = null;
         if (tableColumns.length && tableRows.length) {
-            viewComponent = (
-                <Datatable
-                    tableColumns={tableColumns}
-                    tableRows={tableRows}
-                />
-            );
+            viewComponent = <Datatable tableColumns={tableColumns} tableRows={tableRows} />;
         } else {
-            viewComponent = (
-                <CsvImporter
-                    onFileLoaded={this.onCsvFileImported}
-                />
-            )
+            viewComponent = <CsvImporter onFileLoaded={this.onCsvFileImported} />;
         }
 
         return (
-            <div className="App">
-                {viewComponent}
-            </div>
+            <MuiThemeProvider theme={theme}>
+                <div className={classes.container}>
+                    <AppBar />
+                    <div className={classes.component}>
+                        {viewComponent}
+                    </div>
+                </div>
+            </MuiThemeProvider>
         );
     }
 }
 
-export default App;
+export default withStyles(styles)(App);

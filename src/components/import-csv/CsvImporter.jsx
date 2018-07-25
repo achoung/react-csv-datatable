@@ -6,6 +6,7 @@ import './styles.css';
 export default class CsvImporter extends PureComponent {
     static propTypes = {
         onFileLoaded: PropTypes.func,
+        onFileError: PropTypes.func,
     };
 
     static defaultProps = {
@@ -14,7 +15,7 @@ export default class CsvImporter extends PureComponent {
     };
 
     render() {
-        const { onFileLoaded, onFileError} = this.props;
+        const { onFileLoaded, onFileError } = this.props;
 
         return (
             <div className="csvImporterContainer">

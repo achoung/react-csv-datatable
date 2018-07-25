@@ -40,7 +40,7 @@ class Datatable extends PureComponent {
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                {tableColumns.map(column => {
+                                {tableColumns.map((column) => {
                                     return (
                                         <TableCell key={column}>
                                             {column}
@@ -50,11 +50,11 @@ class Datatable extends PureComponent {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {tableRows.map(row => {
+                            {tableRows.map((row) => {
                                 const { id } = row;
                                 return (
                                     <TableRow key={id}>
-                                        {tableColumns.map(columnKey => {
+                                        {tableColumns.map((columnKey) => {
                                             return (
                                                 <TableCell key={`${id}_${columnKey}`}>
                                                     {row[columnKey]}
