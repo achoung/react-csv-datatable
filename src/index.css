@@ -1,3 +1,7 @@
+#root {
+  display: flex;
+}
+
 body {
   margin: 0;
   padding: 0;

@@ -18,10 +18,10 @@ const theme = createMuiTheme({
 
 const styles = {
     container: {
-
+        flexGrow: 1,
     },
     component: {
-
+        display: 'flex',
     },
 };
 

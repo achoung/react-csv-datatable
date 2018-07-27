@@ -9,11 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
-    root: {
-        width: '100%',
-        marginTop: theme.spacing.unit * 3,
-        overflowX: 'auto',
-    },
     table: {
         minWidth: 700,
     },
@@ -35,39 +30,37 @@ class Datatable extends PureComponent {
         const { classes, tableColumns, tableRows } = this.props;
 
         return (
-            <div className="datatable">
-                <Paper className={classes.root}>
-                    <Table className={classes.table}>
-                        <TableHead>
-                            <TableRow>
-                                {tableColumns.map((column) => {
-                                    return (
-                                        <TableCell key={column}>
-                                            {column}
-                                        </TableCell>
-                                    );
-                                })}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {tableRows.map((row) => {
-                                const { id } = row;
+            <Paper>
+                <Table className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            {tableColumns.map((column) => {
                                 return (
-                                    <TableRow key={id}>
-                                        {tableColumns.map((columnKey) => {
-                                            return (
-                                                <TableCell key={`${id}_${columnKey}`}>
-                                                    {row[columnKey]}
-                                                </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
+                                    <TableCell key={column}>
+                                        {column}
+                                    </TableCell>
                                 );
                             })}
-                        </TableBody>
-                    </Table>
-                </Paper>
-            </div>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {tableRows.map((row) => {
+                            const { id } = row;
+                            return (
+                                <TableRow key={id}>
+                                    {tableColumns.map((columnKey) => {
+                                        return (
+                                            <TableCell key={`${id}_${columnKey}`}>
+                                                {row[columnKey]}
+                                            </TableCell>
+                                        );
+                                    })}
+                                </TableRow>
+                            );
+                        })}
+                    </TableBody>
+                </Table>
+            </Paper>
         );
     }
 }
