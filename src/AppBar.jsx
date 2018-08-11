@@ -13,10 +13,12 @@ import LinkedInIcon from './icons/LinkedIn';
 const APP_BAR_TITLE = 'React CSV Datatable';
 const TOOLBAR_ITEMS = [
     {
+        id: 'github',
         name: 'My GitHub',
         url: 'https://github.com/achoung/react-csv-datatable',
         icon: <GitHubIcon />,
     }, {
+        id: 'linkedin',
         name: 'My LinkedIn',
         url: 'https://www.linkedin.com/in/achoung/',
         icon: <LinkedInIcon />,
@@ -49,11 +51,13 @@ class App extends PureComponent {
                     </Typography>
                     {TOOLBAR_ITEMS.map((item) => {
                         return (
-                            <Tooltip TransitionComponent={Zoom} title={item.name}>
-                                <IconButton href={item.url} className={classes.menuButton} color="inherit" aria-label={item.name}>
-                                    {item.icon}
-                                </IconButton>
-                            </Tooltip>
+                            <div key={item.id}>
+                                <Tooltip TransitionComponent={Zoom} title={item.name}>
+                                    <IconButton href={item.url} className={classes.menuButton} color="inherit" aria-label={item.name}>
+                                        {item.icon}
+                                    </IconButton>
+                                </Tooltip>
+                            </div>
                         );
                     })}
                 </Toolbar>

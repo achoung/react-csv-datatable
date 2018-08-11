@@ -20,8 +20,11 @@ const styles = {
     container: {
         flexGrow: 1,
     },
-    component: {
+    componentWrapper: {
         display: 'flex',
+    },
+    component: {
+        flex: '1 auto',
     },
 };
 
@@ -85,8 +88,10 @@ class App extends Component {
             <MuiThemeProvider theme={theme}>
                 <div className={classes.container}>
                     <AppBar />
-                    <div className={classes.component}>
-                        {viewComponent}
+                    <div className={classes.componentWrapper}>
+                        <div className={classes.component}>
+                            {viewComponent}
+                        </div>
                     </div>
                 </div>
             </MuiThemeProvider>
