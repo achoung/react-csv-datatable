@@ -1,4 +1,4 @@
 /**
  * Copyright (c) 2018 Andrew Choung
  */
-export { default } from './Datatable';
+export { default } from './AppBar';

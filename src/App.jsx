@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+/**
+ * Copyright (c) 2018 Andrew Choung
+ */
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import uniqueId from 'lodash/uniqueId';
 import isNil from 'lodash/isNil';
-import Datatable from './components/datatable';
-import CsvImporter from './components/import-csv';
-import AppBar from './AppBar';
+import Datatable from 'components/Datatable';
+import CsvFileImporter from 'components/CsvFileImporter';
+import AppBar from 'components/AppBar';
+import { APP_BAR_TITLE, TOOLBAR_ITEMS } from 'constants/appBarConstants';
+import './App.css';
 
 const theme = createMuiTheme({
     palette: {
@@ -28,25 +33,33 @@ const styles = {
     },
 };
 
-class App extends Component {
+/**
+ * This app renders a CSV file uploader that uploads the CSV data into a datatable.
+ *
+ * @class App
+ * @extends PureComponent
+ */
+class App extends PureComponent {
     static propTypes = {
+        // props from HOCs
         classes: PropTypes.object.isRequired,
     };
 
-    constructor() {
-        super();
-        this.state = {
-            tableColumns: [],
-            tableRows: [],
-        };
-    }
+    state = {
+        tableColumns: [],
+        tableRows: [],
+    };
 
-    onCsvFileImported = (data) => {
-        const dataRows = Array.isArray(data) ? data : [data];
-        let tableColumns = [];
-        const tableRows = [];
-
+    /**
+     * Handles the event when a CSV file import is successful.
+     * 
+     * @param {Object[]} dataRows The CSV file data rows imported
+     * @param {String} fileName The CSV file name imported
+     */
+    onCsvFileLoaded = (dataRows, fileName) => {
         if (dataRows.length) {
+            let tableColumns = [];
+            const tableRows = [];
             dataRows.forEach((rowValue, rowIndex) => {
                 // do not include the column names as data as they will be used as object keys
                 if (rowIndex > 0) {
@@ -65,14 +78,19 @@ class App extends Component {
                     tableColumns = rowValue;
                 }
             });
-        }
 
-        this.setState({
-            tableColumns,
-            tableRows,
-        });
+            this.setState({
+                tableColumns,
+                tableRows,
+            });
+        }
     };
 
+    /**
+     * Renders the component in JSX syntax
+     * 
+     * @returns {JSX} the component view
+     */
     render() {
         const { tableColumns, tableRows } = this.state;
         const { classes } = this.props;
@@ -81,13 +99,13 @@ class App extends Component {
         if (tableColumns.length && tableRows.length) {
             viewComponent = <Datatable tableColumns={tableColumns} tableRows={tableRows} />;
         } else {
-            viewComponent = <CsvImporter onFileLoaded={this.onCsvFileImported} />;
+            viewComponent = <CsvFileImporter onFileLoaded={this.onCsvFileLoaded} />;
         }
 
         return (
             <MuiThemeProvider theme={theme}>
                 <div className={classes.container}>
-                    <AppBar />
+                    <AppBar title={APP_BAR_TITLE} toolbarItems={TOOLBAR_ITEMS} />
                     <div className={classes.componentWrapper}>
                         <div className={classes.component}>
                             {viewComponent}

@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2018 Andrew Choung
+ */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,12 +11,18 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const styles = theme => ({
+const styles ={
     table: {
         minWidth: 700,
     },
-});
+};
 
+/**
+ * This app renders a Datatable component using Material-UI.
+ *
+ * @class Datatable
+ * @extends PureComponent
+ */
 class Datatable extends PureComponent {
     static propTypes = {
         classes: PropTypes.object.isRequired,
@@ -26,6 +35,11 @@ class Datatable extends PureComponent {
         tableRows: [],
     };
 
+    /**
+     * Renders the component in JSX syntax
+     * 
+     * @returns {JSX} the component view
+     */
     render() {
         const { classes, tableColumns, tableRows } = this.props;
 

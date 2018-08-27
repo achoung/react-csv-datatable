@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2018 Andrew Choung
+ */
 import React from 'react';
 import createSvgIcon from '@material-ui/icons/utils/createSvgIcon';
 
