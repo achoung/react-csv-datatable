@@ -11,7 +11,7 @@ export const TOOLBAR_ITEMS = [
     {
         id: 'github',
         name: 'My GitHub',
-        url: 'https://github.com/achoung/react-tic-tac-toe',
+        url: 'https://github.com/achoung/react-csv-datatable',
         icon: <GitHubIcon />,
     }, {
         id: 'linkedin',
