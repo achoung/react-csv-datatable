@@ -12,7 +12,11 @@
     "react-csv-reader": "^0.3.2",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
-    "typeface-roboto": "0.0.54"
+    "typeface-roboto": "0.0.54",
+    "url-parse": "1.4.3"
+  },
+  "peerDependencies": {
+    "url-parse": "1.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
